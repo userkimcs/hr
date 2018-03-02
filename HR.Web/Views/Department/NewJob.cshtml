@@ -1,0 +1,55 @@
+﻿@model HR.Web.ViewModels.AddJobForDepartmentViewModel
+@{
+    ViewBag.Title = "NewJob";
+}
+
+<h2>NewJob</h2>
+
+
+
+@using (Html.BeginForm("NewJob", "Department", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <h4>Department</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Department.DepartmentName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Department.DepartmentName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Department.Location)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Department.Location)
+            </dd>
+
+        </dl>
+    </div>
+    <div class="form-horizontal">
+        <h4>AddJobForDepartmentViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.DropDownListFor(model => model.JobId, Model.Jobs, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
